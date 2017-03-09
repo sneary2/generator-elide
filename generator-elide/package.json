@@ -1,6 +1,6 @@
 {
   "name": "generator-elide",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "This is a generator for the elide boot feature",
   "main": "index.js",
   "scripts": {
