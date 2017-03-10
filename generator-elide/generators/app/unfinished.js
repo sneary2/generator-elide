@@ -23,7 +23,7 @@ module.exports = class extends Generator {
   //     this.log('app name', answers.name);
   //     this.log('cool feature', answers.cool);
   //   });
-  // }
+  // } 
 
 	model() {
 		this.prompt([{
