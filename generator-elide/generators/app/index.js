@@ -9,64 +9,40 @@ module.exports = class extends Generator {
    		super(args, opts);
    	}
 
-  //  	prompting() {
-  //   return this.prompt([{
-  //     type    : 'input',
-  //     name    : 'name',
-  //     message : 'Your project name',
-  //     default : this.appname // Default to current folder name
-  //   }, {
-  //     type    : 'confirm',
-  //     name    : 'cool',
-  //     message : 'Would you like to enable the Cool feature?'
-  //   }]).then((answers) => {
-  //     this.log('app name', answers.name);
-  //     this.log('cool feature', answers.cool);
-  //   });
-  // }
-
-	model() {
-		this.prompt([{
+	prompting() {
+		return this.prompt([{
 			type    : 'input',
 			name    : 'name',
-			message : 'Name?'
-			},{
-			type    : 'list',
-			choices: [
-				"String",
-				"Int",
-				new inquirer.Separator(),
-				"Short",
-				"Float",
-				"Double",
-				"Long",
-				"Long long",
-				"Boolean",
-				"Char"
-			   ],
-			name    : 'type',
-			message : 'Want to create a model?'
-		}]).then((model) => {
-			this.log(model.name);
-			this.log(model.type);
-		});
-	}
-
-   	prompting() {
-		return this.prompt([{
+			message : 'Your project name',
+			default : this.appname // Default to current folder name
+		}, {
 			type    : 'confirm',
-			name    : 'model',
-			message : 'Want to create a model?'
-		}]).then((answer) => {
-			if(answer.model == true) {
-				_model();
-			}
+			name    : 'cool',
+			message : 'Would you like to enable the Cool feature?'
+		}, {
+			type	: 'list',
+			name	: 'database',
+			message	: 'Choose a database system',
+			choices	: ['MongoDB', 'MySQL', 'PostgreSQL', 'SQLite']
+		}]).then((answers) => {
+			// writing(answers);
+			this.fs.copyTpl(
+				this.templatePath('index.html'),
+				this.destinationPath('public/test.cpp'), {
+					project_name: answers.name,
+					cool_feature: answers.cool,
+					database	: answers.database
+				}
+			);
 		});
 	}
 
-	
-
-	method1() {
- 		this.log('method 1 just ran');
-	}
+	// writing(answers) {
+	// 	this.fs.copyTpl(
+	// 		this.templatePath('index.html'),
+	// 		this.destinationPath('public/index.html'), {
+	// 			title: answers.name
+	// 		}
+	// 	);
+	// }
 };
