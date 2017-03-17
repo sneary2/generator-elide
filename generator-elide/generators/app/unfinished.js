@@ -25,7 +25,29 @@ module.exports = class extends Generator {
   //   });
   // } 
 
-	model() {
+	prompting() {
+		return this.prompt([{
+			type    : 'input',
+			name    : 'name',
+			message : 'Project name?'
+		},{
+			type    : 'input',
+			name    : 'name',
+			message : 'Author?'
+		},{
+			type    : 'input',
+			name    : 'name',
+			message : 'verion?'
+		},{
+			type    : 'input',
+			name    : 'name',
+			message : 'Project name?'
+		},]).then((answer) => {
+
+		});
+	}
+
+	_model() {
 		this.prompt([{
 			type    : 'input',
 			name    : 'name',

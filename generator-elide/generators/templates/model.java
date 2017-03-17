@@ -22,20 +22,20 @@ import javax.persistence.Table;
 @Include(rootLevel = true)
 @SharePermission(expression = "Prefab.Role.All")
 //@CreatePermission(expression = "Prefab.Role.All")
-public class User {
-	private <% =id_type %> id;
+public class <%= name %{
+	private <%= id_type %> id;
 	
 	<% elements.forEach(function(element){ %>
-		private <%% element.type %> <%% element.name %>;
+		private <%= element.type %> <%= element.name %>;
 	<% }); %>
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public <% =id_type %> getId() {
+	public <%= id_type %> getId() {
 		return id;
 	}
 
-	public void setId(<% =id_type %> id) {
+	public void setId(<%= id_type %> id) {
 		this.id = id;
 	}
 }
