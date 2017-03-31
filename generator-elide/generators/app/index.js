@@ -34,14 +34,14 @@ module.exports = class extends Generator {
 			choices	: ['MongoDB', 'MySQL', 'PostgreSQL', 'SQLite']
 		}]).then((answers) => {
 			// writing(answers);
-			this.fs.copyTpl(
-				this.templatePath('index.html'),
-				this.destinationPath('public/test.cpp'), {
-					project_name: answers.name,
-					cool_feature: answers.cool,
-					database	: answers.database
-				}
-			);
+			// this.fs.copyTpl(
+			// 	this.templatePath('index.html'),
+				// this.destinationPath('public/test.cpp'), {
+				// 	project_name: answers.name,
+				// 	cool_feature: answers.cool,
+				// 	database	: answers.database
+				// }
+			// );
 		});
 	}
 
@@ -114,7 +114,7 @@ module.exports = class extends Generator {
 
 	main() {
 		this.options.example? this._create_main(): this._prompting();
-		// this._create_main()
+
 	}
 		// var project = {
 		// 	name: "com.yahoo.elide.example"
