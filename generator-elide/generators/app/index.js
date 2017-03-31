@@ -41,44 +41,43 @@ module.exports = class extends Generator {
 	// }
 
 	create_main() {
-		this.prompt([{
-			type	: 'input',
-			name	: 'name',
-			message : 'Project Name?'
-		}]).then((project) => {
-			var file = project.name.split('.').join('/');
-			// Create the main.java file
-			this.fs.copyTpl(
-				this.templatePath("main.java"),
-				this.destinationPath("src/main/java/" + file + "/main.java"),
-				{}
-			);
-			// Create the model folder
-			this.fs.copyTpl(
-				this.templatePath("test.txt"),
-				this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-				{}
-			);
-			// Create the checks folder
-			this.fs.copyTpl(
-				this.templatePath("test.txt"),
-				this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
-				{}
-			);
 
-			// Create the test models folder
-			this.fs.copyTpl(
-				this.templatePath("test.txt"),
-				this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-				{}
-			);
-			// Create the test checks folder
-			this.fs.copyTpl(
-				this.templatePath("test.txt"),
-				this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
-				{}
-			);
-		});
+		var project = {
+			name: "com.yahoo.elide.example"
+		}
+
+		var file = project.name.split('.').join('/');
+		// Create the main.java file
+		this.fs.copyTpl(
+			this.templatePath("main.java"),
+			this.destinationPath("src/main/java/" + file + "/main.java"),
+			{}
+		);
+		// Create the model folder
+		this.fs.copyTpl(
+			this.templatePath("test.txt"),
+			this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+			{}
+		);
+		// Create the checks folder
+		this.fs.copyTpl(
+			this.templatePath("test.txt"),
+			this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
+			{}
+		);
+
+		// Create the test models folder
+		this.fs.copyTpl(
+			this.templatePath("test.txt"),
+			this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+			{}
+		);
+		// Create the test checks folder
+		this.fs.copyTpl(
+			this.templatePath("test.txt"),
+			this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
+			{}
+		);
 	}
 
 
