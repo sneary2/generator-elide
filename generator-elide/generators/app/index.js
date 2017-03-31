@@ -78,6 +78,13 @@ module.exports = class extends Generator {
 				this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
 				{}
 			);
+
+			// Create the pom.xml file
+			this.fs.copyTpl(
+				this.templatePath("pom.xml"),
+				this.destinationPath("pom.xml"),
+				{}
+			);
 		});
 	}
 
