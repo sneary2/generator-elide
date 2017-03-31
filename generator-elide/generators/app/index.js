@@ -54,33 +54,60 @@ module.exports = class extends Generator {
 		var file = project.name.split('.').join('/');
 		// Create the main.java file
 		this.fs.copyTpl(
-			this.templatePath("main.java"),
-			this.destinationPath("src/main/java/" + file + "/main.java"),
+			this.templatePath("blog-example/Main.java"),
+			this.destinationPath("src/main/java/" + file + "/Main.java"),
 			{}
 		);
-		// Create the model folder
 		this.fs.copyTpl(
-			this.templatePath("test.txt"),
-			this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-			{}
-		);
-		// Create the checks folder
-		this.fs.copyTpl(
-			this.templatePath("test.txt"),
-			this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
+			this.templatePath("blog-example/ElideResourceConfig.java"),
+			this.destinationPath("src/main/java/" + file + "/ElideResourceConfig.java"),
 			{}
 		);
 
-		// Create the test models folder
+		// Init the models folder blog-example
 		this.fs.copyTpl(
-			this.templatePath("test.txt"),
-			this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+			this.templatePath("blog-example/Comment.java"),
+			this.destinationPath("src/main/java/" + file + "/models/Comment.java"),
 			{}
 		);
-		// Create the test checks folder
 		this.fs.copyTpl(
-			this.templatePath("test.txt"),
-			this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
+			this.templatePath("blog-example/Post.java"),
+			this.destinationPath("src/main/java/" + file + "/models/Post.java"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("blog-example/Role.java"),
+			this.destinationPath("src/main/java/" + file + "/models/Role.java"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("blog-example/User.java"),
+			this.destinationPath("src/main/java/" + file + "/models/User.java"),
+			{}
+		);
+
+		// Don't know what this is
+		this.fs.copyTpl(
+			this.templatePath("blog-example/hibernate.cfg.xml"),
+			this.destinationPath("src/resources/hibernate.cfg.xml"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("blog-example/log4j2.xml"),
+			this.destinationPath("src/resources/log4j2.xml"),
+			{}
+		);
+
+		this.fs.copyTpl(
+			this.templatePath("blog-example/load_blog.sh"),
+			this.destinationPath("src/scripts/load_blog.sh"),
+			{}
+		);
+
+		// create the pom file
+		this.fs.copyTpl(
+			this.templatePath("template-pom.xml"),
+			this.destinationPath("pom.xml"),
 			{}
 		);
 	}
@@ -89,6 +116,43 @@ module.exports = class extends Generator {
 		this.options.example? this._create_main(): this._prompting();
 		// this._create_main()
 	}
+		// var project = {
+		// 	name: "com.yahoo.elide.example"
+		// }
+
+		// var file = project.name.split('.').join('/');
+		// // Create the main.java file
+		// this.fs.copyTpl(
+		// 	this.templatePath("main.java"),
+		// 	this.destinationPath("src/main/java/" + file + "/main.java"),
+		// 	{}
+		// );
+		// // Create the model folder
+		// this.fs.copyTpl(
+		// 	this.templatePath("test.txt"),
+		// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+		// 	{}
+		// );
+		// // Create the checks folder
+		// this.fs.copyTpl(
+		// 	this.templatePath("test.txt"),
+		// 	this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
+		// 	{}
+		// );
+
+		// // Create the test models folder
+		// this.fs.copyTpl(
+		// 	this.templatePath("test.txt"),
+		// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+		// 	{}
+		// );
+		// // Create the test checks folder
+		// this.fs.copyTpl(
+		// 	this.templatePath("test.txt"),
+		// 	this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
+		// 	{}
+		// );
+
 
 	// _model() {
 	// 	var new_model = model();
