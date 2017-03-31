@@ -40,23 +40,6 @@ module.exports = class extends Generator {
 	// 	});
 	// }
 
-// 	com.testapp
-// src/
-//     main/
-//         java/
-//             com/
-//                 testapp/
-//                     models/
-//                     checks/ (security checks; an elide object; example: is author? (patch operation))
-//                     main.java
-//                     elideResourceConfig.java
-//     test/
-//         java/
-//             com/
-//                 testapp/
-//                     models/   
-//                     checks/
-
 	create_main() {
 		this.prompt([{
 			type	: 'input',
@@ -64,27 +47,32 @@ module.exports = class extends Generator {
 			message : 'Project Name?'
 		}]).then((project) => {
 			var file = project.name.replace('.', '/');
+			// Create the main.java file
 			this.fs.copyTpl(
 				this.templatePath("main.java"),
 				this.destinationPath("src/main/java/" + file + "/main.java"),
 				{}
 			);
+			// Create the model folder
 			this.fs.copyTpl(
 				this.templatePath("test.txt"),
 				this.destinationPath("src/test/java/" + file + "/models/test.txt"),
 				{}
 			);
+			// Create the checks folder
 			this.fs.copyTpl(
 				this.templatePath("test.txt"),
 				this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
 				{}
 			);
 
+			// Create the test models folder
 			this.fs.copyTpl(
 				this.templatePath("test.txt"),
 				this.destinationPath("src/test/java/" + file + "/models/test.txt"),
 				{}
 			);
+			// Create the test checks folder
 			this.fs.copyTpl(
 				this.templatePath("test.txt"),
 				this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
