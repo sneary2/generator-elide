@@ -53,52 +53,52 @@ module.exports = class extends Generator {
 		// Create the main.java file
 		this.fs.copyTpl(
 			this.templatePath("blog-example/Main.java"),
-			this.destinationPath("src/main/java/" + file + "/Main.java"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/main/java/" + file + "/Main.java"),
 			{}
 		);
 		this.fs.copyTpl(
 			this.templatePath("blog-example/ElideResourceConfig.java"),
-			this.destinationPath("src/main/java/" + file + "/ElideResourceConfig.java"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/main/java/" + file + "/ElideResourceConfig.java"),
 			{}
 		);
 
 		// Init the models folder blog-example
 		this.fs.copyTpl(
 			this.templatePath("blog-example/Comment.java"),
-			this.destinationPath("src/main/java/" + file + "/models/Comment.java"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/main/java/" + file + "/models/Comment.java"),
 			{}
 		);
 		this.fs.copyTpl(
 			this.templatePath("blog-example/Post.java"),
-			this.destinationPath("src/main/java/" + file + "/models/Post.java"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/main/java/" + file + "/models/Post.java"),
 			{}
 		);
 		this.fs.copyTpl(
 			this.templatePath("blog-example/Role.java"),
-			this.destinationPath("src/main/java/" + file + "/models/Role.java"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/main/java/" + file + "/models/Role.java"),
 			{}
 		);
 		this.fs.copyTpl(
 			this.templatePath("blog-example/User.java"),
-			this.destinationPath("src/main/java/" + file + "/models/User.java"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/main/java/" + file + "/models/User.java"),
 			{}
 		);
 
 		// Don't know what this is
 		this.fs.copyTpl(
 			this.templatePath("blog-example/hibernate.cfg.xml"),
-			this.destinationPath("src/resources/hibernate.cfg.xml"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/resources/hibernate.cfg.xml"),
 			{}
 		);
 		this.fs.copyTpl(
 			this.templatePath("blog-example/log4j2.xml"),
-			this.destinationPath("src/resources/log4j2.xml"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/resources/log4j2.xml"),
 			{}
 		);
 
 		this.fs.copyTpl(
 			this.templatePath("blog-example/load_blog.sh"),
-			this.destinationPath("src/scripts/load_blog.sh"),
+			this.destinationPath("elide/elide-example/elide-blog-example/src/scripts/load_blog.sh"),
 			{}
 		);
 
