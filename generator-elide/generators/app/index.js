@@ -7,39 +7,55 @@ function model() {
 
 module.exports = class extends Generator {
 	// The name `constructor` is important here
-<<<<<<< HEAD
 		constructor(args, opts) {
 		// Calling the super constructor is important so our generator is correctly set up
 		super(args, opts);
 	}
 
-	prompting() {
-		return this.prompt([{
-			type    : 'input',
-			name    : 'name',
-			message : 'Your project name',
-			default : this.appname // Default to current folder name
-		}, {
-			type    : 'confirm',
-			name    : 'cool',
-			message : 'Would you like to enable the Cool feature?'
-		}, {
-			type	: 'list',
-			name	: 'database',
-			message	: 'Choose a database system',
-			choices	: ['MongoDB', 'MySQL', 'PostgreSQL', 'SQLite']
-		}]).then((answers) => {
-			// writing(answers);
-			this.fs.copyTpl(
-				this.templatePath('index.html'),
-				this.destinationPath('public/test.cpp'), {
-					project_name: answers.name,
-					cool_feature: answers.cool,
-					database	: answers.database
-				}
-			);
-		});
-	}
+	// prompting() {
+	// 	return this.prompt([{
+	// 		type    : 'input',
+	// 		name    : 'name',
+	// 		message : 'Your project name',
+	// 		default : this.appname // Default to current folder name
+	// 	}, {
+	// 		type    : 'confirm',
+	// 		name    : 'cool',
+	// 		message : 'Would you like to enable the Cool feature?'
+	// 	}, {
+	// 		type	: 'list',
+	// 		name	: 'database',
+	// 		message	: 'Choose a database system',
+	// 		choices	: ['MongoDB', 'MySQL', 'PostgreSQL', 'SQLite']
+	// 	}]).then((answers) => {
+	// 		// writing(answers);
+	// 		this.fs.copyTpl(
+	// 			this.templatePath('index.html'),
+	// 			this.destinationPath('public/test.cpp'), {
+	// 				project_name: answers.name,
+	// 				cool_feature: answers.cool,
+	// 				database	: answers.database
+	// 			}
+	// 		);
+	// 	});
+	// }
+
+// 	com.testapp
+// src/
+//     main/
+//         java/
+//             com/
+//                 testapp/
+//                     models/
+//                     checks/ (security checks; an elide object; example: is author? (patch operation))
+//                     main.java
+//                     elideResourceConfig.java
+//     test/
+//         java/
+//             com/
+//                 testapp/
+//                     models/   
+//                     checks/
 
 	create_main() {
 		this.prompt([{
@@ -47,19 +63,37 @@ module.exports = class extends Generator {
 			name	: 'name',
 			message : 'Project Name?'
 		}]).then((project) => {
-			var file = project.name.replace(".", "/");
+			var file = project.name.replace('.', '/');
 			this.fs.copyTpl(
 				this.templatePath("main.java"),
 				this.destinationPath("src/main/java/" + file + "/main.java"),
 				{}
 			);
+			this.fs.copyTpl(
+				this.templatePath("test.txt"),
+				this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+				{}
+			);
+			this.fs.copyTpl(
+				this.templatePath("test.txt"),
+				this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
+				{}
+			);
+
+			this.fs.copyTpl(
+				this.templatePath("test.txt"),
+				this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+				{}
+			);
+			this.fs.copyTpl(
+				this.templatePath("test.txt"),
+				this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
+				{}
+			);
 		});
-		// this.fs.copyTpl(
-		// 	this.templatePath(null),
-		// 	this.destinationPath("test/java/com/testapp/models/"),
-		// 	null
-		// );
 	}
+		
+		
 
 	// _model() {
 	// 	var new_model = model();
@@ -126,6 +160,7 @@ module.exports = class extends Generator {
 	// 			done = true;
 	// 		}
 	// 	});
+	// }
 
 	// 	_create_models(model_name, models);
 };
