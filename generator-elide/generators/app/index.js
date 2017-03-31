@@ -46,7 +46,7 @@ module.exports = class extends Generator {
 			name	: 'name',
 			message : 'Project Name?'
 		}]).then((project) => {
-			var file = project.name.replace('.', '/');
+			var file = project.name.split('.').join('/');
 			// Create the main.java file
 			this.fs.copyTpl(
 				this.templatePath("main.java"),
@@ -80,8 +80,8 @@ module.exports = class extends Generator {
 			);
 		});
 	}
-		
-		
+
+
 
 	// _model() {
 	// 	var new_model = model();
@@ -103,7 +103,7 @@ module.exports = class extends Generator {
 	// 			"Long long",
 	// 			"Boolean",
 	// 			"Char"
-	// 		   ]			   			
+	// 		   ]
 	// 	}]).then((model) => {
 	// 		new_model.name = model.name;
 	// 		new_model.type = model.type
@@ -118,7 +118,7 @@ module.exports = class extends Generator {
 	// 		this.fs.copyTpl(
 	// 			this.templatePath("model.java"),
 	// 			this.destinationPath("src/main/java/com/testapp/models/" + model_name + ".java"),
-	// 			{ 
+	// 			{
 	// 				name 	: models[i].name,
 	// 				id_type	: models[i].type
 	// 			}
