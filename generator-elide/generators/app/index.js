@@ -19,20 +19,18 @@ module.exports = class extends Generator {
 
 	_prompting() {
 		return this.prompt([{
-			type    : 'input',
-			name    : 'name',
-			message : 'Your project name',
-			default : this.appname // Default to current folder name
-		}, {
-			type    : 'confirm',
-			name    : 'cool',
-			message : 'Would you like to enable the Cool feature?'
-		}, {
 			type	: 'list',
-			name	: 'database',
-			message	: 'Choose a database system',
-			choices	: ['MongoDB', 'MySQL', 'PostgreSQL', 'SQLite']
+			name	: 'command',
+			message	: 'Choose an option below',
+			choices	: ['Try an example', 'Create new project', 'Other Stuff', 'Other Stuff']
 		}]).then((answers) => {
+			if (answers.command === 'Try an example') {
+				// Generate an example
+				this._create_main();
+			}
+			else {
+				console.log("Yo World");
+			}
 			// writing(answers);
 			// this.fs.copyTpl(
 			// 	this.templatePath('index.html'),
