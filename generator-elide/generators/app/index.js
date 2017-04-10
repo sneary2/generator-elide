@@ -110,62 +110,76 @@ module.exports = class extends Generator {
 		);
 	}
 
-	// _model(new_model_attributes) {
-	// 	return this.prompt([{
-	// 		type	: 'input',
-	// 		name	: 'name',
-	// 		message : 'Model Name?'
-	// 	},{
-	// 		name	: 'type',
-	// 		message : 'Want to create a model perhaps?',
-	// 		type	: 'list',
-	// 		choices: [
-	// 			"String",
-	// 			"Int",
-	// 			"Short",
-	// 			"Float",
-	// 			"Double",
-	// 			"Long",
-	// 			"Long long",
-	// 			"Boolean",
-	// 			"Char"
-	// 		   ]
-	// 	}]).then((model) => {
-	// 		// new_model_attributes.push({model.name , model.type})
+	_dezznuts() {
+		console.log("Dezz Nuts");
+	}
 
-	// 		this.log(model.name);
-	// 		this.log(model.type);
-	// 	});
-	// }
+	_continue_generating_models(callback) {
+		var result;
+		this.prompt([{
+			type	: 'confirm',
+			name	: 'contine',
+			message : 'Add another attribute?'
+		}]).then((response) => {
+			// new_model.name = model.name;
+			// new_model.type = model.type
+			result = response.contine;
+			callback(result);
+		});
+	}
 
-	// _continue_generating_models() {
-	// 	var result;
-	// 	this.prompt([{
-	// 		type	: 'confirm',
-	// 		name	: 'contine',
-	// 		message : 'Add another attribute?'
-	// 	}]).then((response) => {
-	// 		// new_model.name = model.name;
-	// 		// new_model.type = model.type
-	// 		result = response.contine;
-	// 	});
-	// 	return result;
-	// }
+	_model(new_model_attributes) {
+		return this.prompt([{
+			type	: 'input',
+			name	: 'name',
+			message : 'Model Name?'
+		},{
+			name	: 'type',
+			message : 'Want to create a model perhaps?',
+			type	: 'list',
+			choices: [
+				"String",
+				"Int",
+				"Short",
+				"Float",
+				"Double",
+				"Long",
+				"Long long",
+				"Boolean",
+				"Char"
+			   ]
+		}]).then((model) => {
+			// new_model_attributes.push({model.name , model.type})
+			this.log("Hello");
+			this.log(model.name);
+			this.log(model.type);
 
+			// this._dezznuts();
+			var my_func = this._model;
+			this._continue_generating_models(function (ret) {
+				if (ret == true) {
+					my_func(new_model_attributes);
+				}
+				else {
+					console.log("LOL");
+				}
+			})
+		});
+	}
 
 	main() {
-		this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
-		
-		// var flag_done = false;
+		// this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
 
-		// var new_model_attributes = [];
+		var flag_done = false;
+
+		var new_model_attributes = [];
 
 		// while(flag_done == false) {
-		// 	this._model(new_model_attributes);
-		// 	flag_done = this._continue_generating_models();
+			this._model(new_model_attributes);
+			// this._continue_generating_models();
 		// }
 	}
-	
+
 	// 	// var project = {
 	// 	// 	name: "com.yahoo.elide.example"
 	// 	// }
