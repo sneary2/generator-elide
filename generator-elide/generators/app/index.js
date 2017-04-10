@@ -26,7 +26,7 @@ module.exports = class extends Generator {
 		}]).then((answers) => {
 			if (answers.command === 'Try an example') {
 				// Generate an example
-				this._create_main();
+				this._create_main("com.yahoo.elide.example");
 			}
 			else {
 				console.log("Yo World");
@@ -43,13 +43,13 @@ module.exports = class extends Generator {
 		});
 	}
 
-	_create_main() {
+	_create_main(project_name) {
 
-		var project = {
-			name: "com.yahoo.elide.example"
-		}
+		// var project = {
+		// 	name: "com.yahoo.elide.example"
+		// }
 
-		var file = project.name.split('.').join('/');
+		var file = project_name.split('.').join('/');
 		// Create the main.java file
 		this.fs.copyTpl(
 			this.templatePath("blog-example/Main.java"),
@@ -110,51 +110,8 @@ module.exports = class extends Generator {
 		);
 	}
 
-	main() {
-		this.options.example? this._create_main(): this._prompting();
-
-	}
-		// var project = {
-		// 	name: "com.yahoo.elide.example"
-		// }
-
-		// var file = project.name.split('.').join('/');
-		// // Create the main.java file
-		// this.fs.copyTpl(
-		// 	this.templatePath("main.java"),
-		// 	this.destinationPath("src/main/java/" + file + "/main.java"),
-		// 	{}
-		// );
-		// // Create the model folder
-		// this.fs.copyTpl(
-		// 	this.templatePath("test.txt"),
-		// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-		// 	{}
-		// );
-		// // Create the checks folder
-		// this.fs.copyTpl(
-		// 	this.templatePath("test.txt"),
-		// 	this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
-		// 	{}
-		// );
-
-		// // Create the test models folder
-		// this.fs.copyTpl(
-		// 	this.templatePath("test.txt"),
-		// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-		// 	{}
-		// );
-		// // Create the test checks folder
-		// this.fs.copyTpl(
-		// 	this.templatePath("test.txt"),
-		// 	this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
-		// 	{}
-		// );
-
-
-	// _model() {
-	// 	var new_model = model();
-	// 	this.prompt([{
+	// _model(new_model_attributes) {
+	// 	return this.prompt([{
 	// 		type	: 'input',
 	// 		name	: 'name',
 	// 		message : 'Model Name?'
@@ -174,13 +131,77 @@ module.exports = class extends Generator {
 	// 			"Char"
 	// 		   ]
 	// 	}]).then((model) => {
-	// 		new_model.name = model.name;
-	// 		new_model.type = model.type
+	// 		// new_model_attributes.push({model.name , model.type})
+
 	// 		this.log(model.name);
 	// 		this.log(model.type);
 	// 	});
-	// 	return new_model;
 	// }
+
+	// _continue_generating_models() {
+	// 	var result;
+	// 	this.prompt([{
+	// 		type	: 'confirm',
+	// 		name	: 'contine',
+	// 		message : 'Add another attribute?'
+	// 	}]).then((response) => {
+	// 		// new_model.name = model.name;
+	// 		// new_model.type = model.type
+	// 		result = response.contine;
+	// 	});
+	// 	return result;
+	// }
+
+
+	main() {
+		this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
+		
+		// var flag_done = false;
+
+		// var new_model_attributes = [];
+
+		// while(flag_done == false) {
+		// 	this._model(new_model_attributes);
+		// 	flag_done = this._continue_generating_models();
+		// }
+	}
+	
+	// 	// var project = {
+	// 	// 	name: "com.yahoo.elide.example"
+	// 	// }
+
+	// 	// var file = project.name.split('.').join('/');
+	// 	// // Create the main.java file
+	// 	// this.fs.copyTpl(
+	// 	// 	this.templatePath("main.java"),
+	// 	// 	this.destinationPath("src/main/java/" + file + "/main.java"),
+	// 	// 	{}
+	// 	// );
+	// 	// // Create the model folder
+	// 	// this.fs.copyTpl(
+	// 	// 	this.templatePath("test.txt"),
+	// 	// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+	// 	// 	{}
+	// 	// );
+	// 	// // Create the checks folder
+	// 	// this.fs.copyTpl(
+	// 	// 	this.templatePath("test.txt"),
+	// 	// 	this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
+	// 	// 	{}
+	// 	// );
+
+	// 	// // Create the test models folder
+	// 	// this.fs.copyTpl(
+	// 	// 	this.templatePath("test.txt"),
+	// 	// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
+	// 	// 	{}
+	// 	// );
+	// 	// // Create the test checks folder
+	// 	// this.fs.copyTpl(
+	// 	// 	this.templatePath("test.txt"),
+	// 	// 	this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
+	// 	// 	{}
+	// 	// );
 
 	// _create_models(model_name, models) {
 	// 	for(var i=0; i<models.length; i++) {
