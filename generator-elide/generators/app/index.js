@@ -25,7 +25,7 @@ module.exports = class extends Generator {
 		}]).then((answers) => {
 			if (answers.command === 'Try an example') {
 				// Generate an example
-				this._create_main();
+				this._generate_project("com.yahoo.elide.example");
 			}
 			else if (answers.command === 'Create a new project'){
 				// Ask questions when creating a new project
@@ -38,13 +38,13 @@ module.exports = class extends Generator {
 	}
 
 	// Generate an example
-	_generate_example() {
+	_generate_project(project_name) {
 
-		var project = {
-			name: "com.yahoo.elide.example"
-		}
+		// var project = {
+		// 	name: "com.yahoo.elide.example"
+		// }
 
-		var file = project.name.split('.').join('/');
+		var file = project_name.split('.').join('/');
 		// Create the main.java file
 		this.fs.copyTpl(
 			this.templatePath("blog-example/Main.java"),
@@ -108,19 +108,33 @@ module.exports = class extends Generator {
 	// Create new project
 	_create_new_project() {
 		return this.prompt([{
-			  // Project name
-			  type    : 'input',
-			  name    : 'project_name',
-			  message : 'Your project name',
-			  default : this.appname // Default to current folder name
+			// Project name
+			type    : 'input',
+			name    : 'project_name',
+			message : 'Your project name',
+			default : this.appname // Default to current folder name
 		}, {
-			  // Package name
-			  type    : 'input',
-			  name    : 'package_name',
-			  message : 'Your package name'
+			// Package name
+			type    : 'input',
+			name    : 'package_name',
+			message : 'Your package name',
+		}, {
+			// Author
+			type	: 'input',
+			name	: 'author',
+			message	: 'Author'
+		}, {
+			// Version
+			type	: 'input',
+			name	: 'version',
+			message	: 'Version'
+		}, {
+			// License
+			type	: 'input',
+			name	: 'license',
+			message	: 'License'
 		}]).then((answers) => {
-			  this.log('app name', answers.project_name);
-			  this.log('cool feature', answers.package_name);
+			  this._generate_project(answers.package_name + "." + answers.project_name);
 			});
 	}
 
@@ -135,7 +149,7 @@ module.exports = class extends Generator {
 	main() {
 		if (this.options.example) {
 			console.log("Generate an example");
-			this._create_main();
+			this._generate_project();
 		}
 		else if (this.options.create) {
 			console.log("Create a new project");
