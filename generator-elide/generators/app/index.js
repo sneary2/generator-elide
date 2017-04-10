@@ -15,34 +15,30 @@ module.exports = class extends Generator {
 		this.option('info');		// Option flag to show Elide boot info
 	}
 
+	// This function get called when the user doesn't specify any options
 	_prompting() {
 		return this.prompt([{
 			type	: 'list',
 			name	: 'command',
 			message	: 'Choose an option below',
-			choices	: ['Try an example', 'Create new project']
+			choices	: ['Try an example', 'Create a new project', 'Info & Contact']
 		}]).then((answers) => {
 			if (answers.command === 'Try an example') {
 				// Generate an example
 				this._create_main();
 			}
-			else {
+			else if (answers.command === 'Create a new project'){
 				// Ask questions when creating a new project
-				console.log("Yo World");
+				this._create_new_project();
 			}
-			// writing(answers);
-			// this.fs.copyTpl(
-			// 	this.templatePath('index.html'),
-				// this.destinationPath('public/test.cpp'), {
-				// 	project_name: answers.name,
-				// 	cool_feature: answers.cool,
-				// 	database	: answers.database
-				// }
-			// );
+			else {
+				this._show_info();
+			}
 		});
 	}
 
-	_create_main() {
+	// Generate an example
+	_generate_example() {
 
 		var project = {
 			name: "com.yahoo.elide.example"
@@ -109,6 +105,33 @@ module.exports = class extends Generator {
 		);
 	}
 
+	// Create new project
+	_create_new_project() {
+		return this.prompt([{
+			  // Project name
+			  type    : 'input',
+			  name    : 'project_name',
+			  message : 'Your project name',
+			  default : this.appname // Default to current folder name
+		}, {
+			  // Package name
+			  type    : 'input',
+			  name    : 'package_name',
+			  message : 'Your package name'
+		}]).then((answers) => {
+			  this.log('app name', answers.project_name);
+			  this.log('cool feature', answers.package_name);
+			});
+	}
+
+	// Show info
+	_show_info() {
+		console.log("Elide Boot is a command line interface (CLI) for Yahoo! Elide libary");
+		console.log("Author: Deez Nuts");
+		console.log("Version: 1.0.0");
+		console.log("Contact: lame_email@suspicious-server.com");
+	}
+
 	main() {
 		if (this.options.example) {
 			console.log("Generate an example");
@@ -116,12 +139,10 @@ module.exports = class extends Generator {
 		}
 		else if (this.options.create) {
 			console.log("Create a new project");
+			this._create_new_project();
 		}
 		else if (this.options.info){
-			console.log("Elide Boot is a command line interface (CLI) for Yahoo! Elide libary");
-			console.log("Author: Deez Nuts");
-			console.log("Version: 1.0.0");
-			console.log("Contact: lame_email@suspicious-server.com");
+			this._show_info()
 		}
 		else {
 			this._prompting();
