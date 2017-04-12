@@ -5,6 +5,8 @@ function model() {
 	this.type = null;
 }
 
+var new_model_attributes = [];
+
 module.exports = class extends Generator {
 	constructor(args, opts) {
 		// Calling the super constructor is important so our generator is correctly set up
@@ -150,7 +152,7 @@ module.exports = class extends Generator {
 			   ]
 		}]).then((model) => {
 			// new_model_attributes.push({model.name , model.type})
-			this.log("Hello");
+			// this.log("Hello");
 			this.log(model.name);
 			this.log(model.type);
 
@@ -173,14 +175,30 @@ module.exports = class extends Generator {
 		});
 	}
 
+	_create_model() {
+		this.fs.copyTpl(
+			this.templatePath("model.java"),
+			this.destinationPath("model.java"),
+			{
+				name: "Book",
+				elements: [
+					{name: "pages", 	type: "int"},
+					{name: "author", 	type: "String"},
+					{name: "hardcover", type: "boolean"}
+				]
+			}
+		);
+	}
+
 	main() {
 		// this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
 
-		var flag_done = false;
+		this._create_model();
 
-		var new_model_attributes = [];
-
-		this._model(new_model_attributes);
+		// var flag_done = false;
+		
+		// new_model_attributes = [];
+		// this._model(new_model_attributes);
 	}
 
 	// 	// var project = {

@@ -22,10 +22,10 @@ import javax.persistence.Table;
 @Include(rootLevel = true)
 @SharePermission(expression = "Prefab.Role.All")
 //@CreatePermission(expression = "Prefab.Role.All")
-public class <%= name %{
-	private <%= id_type %> id;
+public class <%= model.name %{
+	private <%= model.id_type %> id;
 	
-	<% elements.forEach(function(element){ %>
+	<% model.elements.forEach(function(element){ %>
 		private <%= element.type %> <%= element.name %>;
 	<% }); %>
 
