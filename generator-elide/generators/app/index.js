@@ -155,15 +155,21 @@ module.exports = class extends Generator {
 			this.log(model.type);
 
 			// this._dezznuts();
-			var my_func = this._model;
-			this._continue_generating_models(function (ret) {
-				if (ret == true) {
-					my_func(new_model_attributes);
+			// var my_func = this._model;
+			this.prompt([{
+				type	: 'confirm',
+				name	: 'continue',
+				message : 'Add another attribute?'
+			}]).then((response) => {
+
+				if (response.continue === true) {
+					console.log("yes");
+					this._model(new_model_attributes);
 				}
 				else {
-					console.log("LOL");
+					console.log("Shane is gay");
 				}
-			})
+			});
 		});
 	}
 
@@ -174,10 +180,7 @@ module.exports = class extends Generator {
 
 		var new_model_attributes = [];
 
-		// while(flag_done == false) {
-			this._model(new_model_attributes);
-			// this._continue_generating_models();
-		// }
+		this._model(new_model_attributes);
 	}
 
 	// 	// var project = {
