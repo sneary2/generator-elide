@@ -23,15 +23,18 @@ module.exports = class extends Generator {
 			type	: 'list',
 			name	: 'command',
 			message	: 'Choose an option below',
-			choices	: ['Try an example', 'Create a new project', 'Info & Contact']
+			choices	: ['Try an example', 'Create a new project', 'Add models to an existing project', 'Info & Contact']
 		}]).then((answers) => {
 			if (answers.command === 'Try an example') {
 				// Generate an example
-				this._generate_project("com.yahoo.elide.example");
+				this._generate_example_project("com.yahoo.elide.example");
+				console.log("Example project created under elide/elide-example");
 			}
-			else if (answers.command === 'Create a new project'){
+			else if (answers.command === 'Create a new project') {
 				// Ask questions when creating a new project
 				this._create_new_project();
+			}
+			else if (answers.command === 'Add models to an existing project') {
 				this._model(new_model_attributes);
 			}
 			else {
@@ -41,11 +44,7 @@ module.exports = class extends Generator {
 	}
 
 	// Generate an example
-	_generate_project(project_name) {
-
-		// var project = {
-		// 	name: "com.yahoo.elide.example"
-		// }
+	_generate_example_project(project_name) {
 
 		var file = project_name.split('.').join('/');
 		// Create the main.java file
@@ -108,6 +107,49 @@ module.exports = class extends Generator {
 		);
 	}
 
+	_generate_new_project(project_name, package_name) {
+		var file = package_name.split('.').join('/');
+		// Create the main.java file
+		this.fs.copyTpl(
+			this.templatePath("blog-example/Main.java"),
+			this.destinationPath(project_name + "/src/main/java/" + file + "/Main.java"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("blog-example/ElideResourceConfig.java"),
+			this.destinationPath(project_name + "/src/main/java/" + file + "/ElideResourceConfig.java"),
+			{}
+		);
+
+		// Don't know what this is
+		this.fs.copyTpl(
+			this.templatePath("blog-example/hibernate.cfg.xml"),
+			this.destinationPath(project_name + "/src/resources/hibernate.cfg.xml"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("blog-example/log4j2.xml"),
+			this.destinationPath(project_name + "/src/resources/log4j2.xml"),
+			{}
+		);
+
+		this.fs.copyTpl(
+			this.templatePath("blog-example/load_blog.sh"),
+			this.destinationPath(project_name + "/src/scripts/load_blog.sh"),
+			{}
+		);
+
+		// create the pom file
+		// TODO: Should create a generic pom file
+		// e.g. to download elide and its dependencies
+
+		// this.fs.copyTpl(
+		// 	this.templatePath("template-pom.xml"),
+		// 	this.destinationPath("pom.xml"),
+		// 	{}
+		// );
+	}
+
 	_model(new_model_attributes) {
 		return this.prompt([{
 			type	: 'input',
@@ -147,7 +189,7 @@ module.exports = class extends Generator {
 					this._model(new_model_attributes);
 				}
 				else {
-					console.log("Phillip is gay");
+					console.log("Shane is gay");
 				}
 			});
 		});
@@ -197,7 +239,7 @@ module.exports = class extends Generator {
 			name	: 'license',
 			message	: 'License'
 		}]).then((answers) => {
-			  this._generate_project(answers.package_name + "." + answers.project_name);
+			  this._generate_new_project(answers.project_name, answers.package_name);
 			});
 	}
 
@@ -212,11 +254,15 @@ module.exports = class extends Generator {
 	main() {
 		if (this.options.example) {
 			console.log("Generate an example");
-			this._generate_project();
+			this._generate_example_project("com.yahoo.elide.example");
+			console.log("Example project created under elide/elide-example");
 		}
 		else if (this.options.create) {
 			console.log("Create a new project");
 			this._create_new_project();
+		}
+		else if (this.options.model) {
+			console.log("Add models to project");
 			this._model(new_model_attributes);
 		}
 		else if (this.options.info){
