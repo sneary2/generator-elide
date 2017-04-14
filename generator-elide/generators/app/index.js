@@ -169,7 +169,7 @@ module.exports = class extends Generator {
 					this._model(new_model_attributes);
 				}
 				else {
-					console.log("Shane is gay");
+					console.log("Phillip is gay");
 				}
 			});
 		});
