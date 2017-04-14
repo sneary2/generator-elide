@@ -1,4 +1,6 @@
 .yo-rc.json
-public
+public/
 src/
 pom.xml
+model.java
+old_model.java
