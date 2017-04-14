@@ -5,7 +5,7 @@ function model() {
 	this.type = null;
 }
 
-var new_model_attributes = [];
+var new_model;
 
 module.exports = class extends Generator {
 	constructor(args, opts) {
@@ -104,10 +104,20 @@ module.exports = class extends Generator {
 			{}
 		);
 
-		// create the pom file
+		// create the pom files
 		this.fs.copyTpl(
-			this.templatePath("template-pom.xml"),
-			this.destinationPath("pom.xml"),
+			this.templatePath("pom_files/elide-example-blog-pom.xml"),
+			this.destinationPath("elide/elide-example/elide-blog-example/pom.xml"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("pom_files/elide-example-pom.xml"),
+			this.destinationPath("elide/elide-example/pom.xml"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("pom_files/elide-pom.xml"),
+			this.destinationPath("elide/pom.xml"),
 			{}
 		);
 	}
@@ -151,7 +161,7 @@ module.exports = class extends Generator {
 				"Char"
 			   ]
 		}]).then((model) => {
-			// new_model_attributes.push({model.name , model.type})
+			// new_model_attributes.push({model.name , model.type})s
 			// this.log("Hello");
 			this.log(model.name);
 			this.log(model.type);
@@ -191,13 +201,13 @@ module.exports = class extends Generator {
 	}
 
 	main() {
-		// this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
+		this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
 
-		this._create_model();
+		// this._create_model();
 
 		// var flag_done = false;
 		
-		// new_model_attributes = [];
+		// var new_model_attributes = [];
 		// this._model(new_model_attributes);
 	}
 
