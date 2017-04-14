@@ -12,40 +12,36 @@ module.exports = class extends Generator {
 		// Calling the super constructor is important so our generator is correctly set up
 		super(args, opts);
 
-		// This method adds support for a `--example` flag
-        this.option('example');
-        // And you can then access it later; e.g.
-        // this.options.example? this._create_main(): this._prompting();
-		// this._create_main()
+        this.option('example');		// Option flag to generate an example
+		this.option('create');		// Option flag to create a new project
+		this.option('info');		// Option flag to show Elide boot info
 	}
 
+	// This function get called when the user doesn't specify any options
 	_prompting() {
 		return this.prompt([{
 			type	: 'list',
 			name	: 'command',
 			message	: 'Choose an option below',
-			choices	: ['Try an example', 'Create new project', 'Other Stuff', 'Other Stuff']
+			choices	: ['Try an example', 'Create a new project', 'Info & Contact']
 		}]).then((answers) => {
 			if (answers.command === 'Try an example') {
 				// Generate an example
-				this._create_main("com.yahoo.elide.example");
+				this._generate_project("com.yahoo.elide.example");
+			}
+			else if (answers.command === 'Create a new project'){
+				// Ask questions when creating a new project
+				this._create_new_project();
+				this._model(new_model_attributes);
 			}
 			else {
-				console.log("Yo World");
+				this._show_info();
 			}
-			// writing(answers);
-			// this.fs.copyTpl(
-			// 	this.templatePath('index.html'),
-				// this.destinationPath('public/test.cpp'), {
-				// 	project_name: answers.name,
-				// 	cool_feature: answers.cool,
-				// 	database	: answers.database
-				// }
-			// );
 		});
 	}
 
-	_create_main(project_name) {
+	// Generate an example
+	_generate_project(project_name) {
 
 		// var project = {
 		// 	name: "com.yahoo.elide.example"
@@ -112,24 +108,6 @@ module.exports = class extends Generator {
 		);
 	}
 
-	_dezznuts() {
-		console.log("Dezz Nuts");
-	}
-
-	_continue_generating_models(callback) {
-		var result;
-		this.prompt([{
-			type	: 'confirm',
-			name	: 'contine',
-			message : 'Add another attribute?'
-		}]).then((response) => {
-			// new_model.name = model.name;
-			// new_model.type = model.type
-			result = response.contine;
-			callback(result);
-		});
-	}
-
 	_model(new_model_attributes) {
 		return this.prompt([{
 			type	: 'input',
@@ -190,90 +168,62 @@ module.exports = class extends Generator {
 		);
 	}
 
-	main() {
-		// this.options.example? this._create_main("com.yahoo.elide.example"): this._prompting();
-
-		this._create_model();
-
-		// var flag_done = false;
-		
-		// new_model_attributes = [];
-		// this._model(new_model_attributes);
+	// Create new project
+	_create_new_project() {
+		return this.prompt([{
+			// Project name
+			type    : 'input',
+			name    : 'project_name',
+			message : 'Your project name',
+			default : this.appname // Default to current folder name
+		}, {
+			// Package name
+			type    : 'input',
+			name    : 'package_name',
+			message : 'Your package name',
+		}, {
+			// Author
+			type	: 'input',
+			name	: 'author',
+			message	: 'Author'
+		}, {
+			// Version
+			type	: 'input',
+			name	: 'version',
+			message	: 'Version'
+		}, {
+			// License
+			type	: 'input',
+			name	: 'license',
+			message	: 'License'
+		}]).then((answers) => {
+			  this._generate_project(answers.package_name + "." + answers.project_name);
+			});
 	}
 
-	// 	// var project = {
-	// 	// 	name: "com.yahoo.elide.example"
-	// 	// }
+	// Show info
+	_show_info() {
+		console.log("Elide Boot is a command line interface (CLI) for Yahoo! Elide libary");
+		console.log("Author: Deez Nuts");
+		console.log("Version: 1.0.0");
+		console.log("Contact: lame_email@suspicious-server.com");
+	}
 
-	// 	// var file = project.name.split('.').join('/');
-	// 	// // Create the main.java file
-	// 	// this.fs.copyTpl(
-	// 	// 	this.templatePath("main.java"),
-	// 	// 	this.destinationPath("src/main/java/" + file + "/main.java"),
-	// 	// 	{}
-	// 	// );
-	// 	// // Create the model folder
-	// 	// this.fs.copyTpl(
-	// 	// 	this.templatePath("test.txt"),
-	// 	// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-	// 	// 	{}
-	// 	// );
-	// 	// // Create the checks folder
-	// 	// this.fs.copyTpl(
-	// 	// 	this.templatePath("test.txt"),
-	// 	// 	this.destinationPath("src/main/java/" + file + "/checks/test.txt"),
-	// 	// 	{}
-	// 	// );
-
-	// 	// // Create the test models folder
-	// 	// this.fs.copyTpl(
-	// 	// 	this.templatePath("test.txt"),
-	// 	// 	this.destinationPath("src/test/java/" + file + "/models/test.txt"),
-	// 	// 	{}
-	// 	// );
-	// 	// // Create the test checks folder
-	// 	// this.fs.copyTpl(
-	// 	// 	this.templatePath("test.txt"),
-	// 	// 	this.destinationPath("src/test/java/" + file + "/checks/test.txt"),
-	// 	// 	{}
-	// 	// );
-
-	// _create_models(model_name, models) {
-	// 	for(var i=0; i<models.length; i++) {
-	// 		this.fs.copyTpl(
-	// 			this.templatePath("model.java"),
-	// 			this.destinationPath("src/main/java/com/testapp/models/" + model_name + ".java"),
-	// 			{
-	// 				name 	: models[i].name,
-	// 				id_type	: models[i].type
-	// 			}
-	// 		);
-	// 	}
-	// }
-
-	// prompting() {
-	// 	var models = [];
-	// 	var model_name;
-
-	// 	this.prompt([{
-	// 		type	: 'confirm',
-	// 		name	: 'model',
-	// 		message : 'Want to create a model?'
-	// 	}]).then((answer) => {
-	// 		if(answer.model == true) {
-	// 			this.prompt([{
-	// 				type	: 'input',
-	// 				name	: 'model_name',
-	// 				message : 'Name of Model?'
-	// 			}]).then((answer) => {
-	// 				model_name = answer.model_name;
-	// 				models.append(_model(model_name, models));
-	// 			});
-	// 		} else {
-	// 			done = true;
-	// 		}
-	// 	});
-	// }
-
-	// 	_create_models(model_name, models);
+	main() {
+		if (this.options.example) {
+			console.log("Generate an example");
+			this._generate_project();
+		}
+		else if (this.options.create) {
+			console.log("Create a new project");
+			this._create_new_project();
+			this._model(new_model_attributes);
+		}
+		else if (this.options.info){
+			this._show_info()
+		}
+		else {
+			this._prompting();
+		}
+	}
 };
