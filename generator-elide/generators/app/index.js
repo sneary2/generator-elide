@@ -5,7 +5,7 @@ function model() {
 	this.type = null;
 }
 
-var new_model;
+var new_model_attributes = {name: "", schemas: [] };
 
 module.exports = class extends Generator {
 	constructor(args, opts) {
@@ -160,16 +160,16 @@ module.exports = class extends Generator {
 		// );
 	}
 
-	_model(new_model_attributes) {
+	_schema(new_model_attributes) {
 		return this.prompt([{
 			type	: 'input',
 			name	: 'name',
-			message : 'Model Name?'
+			message : 'Schema Name'
 		},{
 			name	: 'type',
-			message : 'Want to create a model perhaps?',
+			message : 'What type?',
 			type	: 'list',
-			choices: [
+			choices : [
 				"String",
 				"Int",
 				"Short",
@@ -183,9 +183,9 @@ module.exports = class extends Generator {
 		}]).then((model) => {
 			// new_model_attributes.push({model.name , model.type})s
 			// this.log("Hello");
-			this.log(model.name);
-			this.log(model.type);
-
+			// this.log(model.name);
+			// this.log(model.type);
+			new_model_attributes.schemas.push({name: model.name, type: model.type});
 			// this._dezznuts();
 			// var my_func = this._model;
 			this.prompt([{
@@ -195,28 +195,51 @@ module.exports = class extends Generator {
 			}]).then((response) => {
 
 				if (response.continue === true) {
-					console.log("yes");
-					this._model(new_model_attributes);
+					// console.log("yes");
+					this._schema(new_model_attributes);
+				}
+				else {
+					this._create_model(new_model_attributes)
+				}
+			});
+		});
+	}
+
+	_model(new_model_attributes) {
+		return this.prompt([{
+			type	: 'input',
+			name	: 'name',
+			message : 'Model Name?'
+		},]).then((model) => {
+			// new_model_attributes.push({model.name , model.type})s
+			// this.log("Hello");
+			// this.log(model.name);
+			// this.log(model.type);
+			new_model_attributes.name = model.name;
+			// this._dezznuts();
+			// var my_func = this._model;
+			this.prompt([{
+				type	: 'confirm',
+				name	: 'continue',
+				message : 'Add another attribute?'
+			}]).then((response) => {
+
+				if (response.continue === true) {
+					// console.log("yes");
+					this._schema(new_model_attributes);
 				}
 				else {
 					console.log("Shane is gay");
 				}
 			});
 		});
-	}
+	} 
 
-	_create_model() {
+	_create_model(model) {
 		this.fs.copyTpl(
 			this.templatePath("model.java"),
 			this.destinationPath("model.java"),
-			{
-				name: "Book",
-				elements: [
-					{name: "pages", 	type: "int"},
-					{name: "author", 	type: "String"},
-					{name: "hardcover", type: "boolean"}
-				]
-			}
+			model
 		);
 	}
 
