@@ -1,3 +1,5 @@
+var generator = require('./generator');
+
 var new_model_attributes = {name: "", schemas: [] };
 
 function schema_promt(yo) {
@@ -80,6 +82,7 @@ function create_model(yo) {
 		yo.destinationPath("model.java"),
 		new_model_attributes
 	);
+    generator.generate_new_project(yo, project_name, package_name);
 }
 
 module.exports = {

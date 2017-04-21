@@ -8,7 +8,7 @@ function prompting(yo) {
         type	: 'list',
         name	: 'command',
         message	: 'Choose an option below',
-        choices	: ['Try an example', 'Create a new project', 'Add models to an existing project', 'Info & Contact']
+        choices	: ['Try an example', 'Create a new project', 'Info & Contact']
     }]).then((answers) => {
         if (answers.command === 'Try an example') {
             // Generate an example
@@ -19,10 +19,7 @@ function prompting(yo) {
             // Ask questions when creating a new project
             create_new_project(yo);
         }
-        else if (answers.command === 'Add models to an existing project') {
-            model.model_prompt(yo);
-        }
-        else {
+        else if (answers.command === 'Info & Contact') {
             misc.show_info();
         }
     });
@@ -56,8 +53,17 @@ function create_new_project(yo) {
         type	: 'input',
         name	: 'license',
         message	: 'License'
+    }, {
+        type    : 'confirm',
+        name    : 'model',
+        message : 'Would you like to add models?'
     }]).then((answers) => {
-          generator.generate_new_project(yo, answers.project_name, answers.package_name);
+            if (answers.model) {
+                model.model_prompt(yo);
+            }
+            else {
+                generator.generate_new_project(yo, answers.project_name, answers.package_name);
+            }
       });
 }
 
