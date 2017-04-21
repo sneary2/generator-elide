@@ -1,3 +1,4 @@
+.gitignore
 generator-elide/node_modules
 .yo-rc.json
 public

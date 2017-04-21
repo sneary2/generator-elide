@@ -1,3 +1,4 @@
+.gitignore
 .yo-rc.json
 public/
 src/
