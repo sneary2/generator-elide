@@ -1,4 +1,4 @@
-node_modules
+generator-elide/node_modules
 .yo-rc.json
 public
 src/
