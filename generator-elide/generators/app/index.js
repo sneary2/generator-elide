@@ -99,20 +99,9 @@ module.exports = class extends Generator {
 			{}
 		);
 
-		// create the pom files
 		this.fs.copyTpl(
-			this.templatePath("pom_files/elide-example-blog-pom.xml"),
-			this.destinationPath("elide/elide-example/elide-blog-example/pom.xml"),
-			{}
-		);
-		this.fs.copyTpl(
-			this.templatePath("pom_files/elide-example-pom.xml"),
-			this.destinationPath("elide/elide-example/pom.xml"),
-			{}
-		);
-		this.fs.copyTpl(
-			this.templatePath("pom_files/elide-pom.xml"),
-			this.destinationPath("elide/pom.xml"),
+			this.templatePath("template-pom.xml"),
+			this.destinationPath("pom.xml"),
 			{}
 		);
 	}
@@ -233,7 +222,7 @@ module.exports = class extends Generator {
 				}
 			});
 		});
-	} 
+	}
 
 	_create_model(model) {
 		this.fs.copyTpl(
