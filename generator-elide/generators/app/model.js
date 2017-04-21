@@ -74,11 +74,11 @@ function model_prompt(yo) {
 	});
 }
 
-function create_model(yo, model) {
+function create_model(yo) {
 	yo.fs.copyTpl(
 		yo.templatePath("model.java"),
 		yo.destinationPath("model.java"),
-		model
+		new_model_attributes
 	);
 }
 
