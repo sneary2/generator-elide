@@ -59,7 +59,6 @@ function create_new_project(yo) {
         message : 'Would you like to add models?'
     }]).then((answers) => {
             if (answers.model) {
-                console.log(answers.package_name);
                 model.model_prompt(yo, answers.project_name, answers.package_name);
             }
             else {

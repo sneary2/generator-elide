@@ -62,7 +62,6 @@ function create_model(yo, project_name, package_name) {
 		yo.destinationPath(project_name + "/src/main/java/" + file + "/models/" + new_model_attributes.name + ".java"),
 		new_model_attributes
 	);
-	console.log(package_name);
     generator.generate_new_project(yo, project_name, package_name);
 }
 
