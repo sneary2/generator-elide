@@ -2,6 +2,7 @@ var Generator = require('yeoman-generator');
 var prompt = require('./prompt');
 var model = require('./model');
 var generator = require('./generator');
+var misc = require('./misc.js');
 
 module.exports = class extends Generator {
 	constructor(args, opts) {
@@ -11,14 +12,6 @@ module.exports = class extends Generator {
         this.option('example');		// Option flag to generate an example
 		this.option('create');		// Option flag to create a new project
 		this.option('info');		// Option flag to show Elide boot info
-	}
-	
-	// Show info
-	_show_info() {
-		console.log("Elide Boot is a command line interface (CLI) for Yahoo! Elide libary");
-		console.log("Author: Deez Nuts");
-		console.log("Version: 1.0.0");
-		console.log("Contact: lame_email@suspicious-server.com");
 	}
 
 	main() {
@@ -36,7 +29,7 @@ module.exports = class extends Generator {
 			model.model_prompt(this);
 		}
 		else if (this.options.info){
-			this._show_info()
+			misc.show_info()
 		}
 		else {
 			prompt.prompting(this);

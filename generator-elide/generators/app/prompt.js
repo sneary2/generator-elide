@@ -1,5 +1,6 @@
 var generator = require('./generator')
 var model = require('./model')
+var misc = require('./misc.js');
 
 // Main prompt when running 'yo elide'
 function prompting(yo) {
@@ -22,7 +23,7 @@ function prompting(yo) {
             model.model_prompt(yo);
         }
         else {
-            // this._show_info();
+            misc.show_info();
         }
     });
 }
