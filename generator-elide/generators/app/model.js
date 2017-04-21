@@ -21,16 +21,11 @@ function schema_promt(yo) {
 			"Char"
 		   ]
 	}]).then((model) => {
-		// yo.log("Hello");
-		// yo.log(model.name);
-		// yo.log(model.type);
 		new_model_attributes.schemas.push({name: model.name, type: model.type});
-		// yo._dezznuts();
-		// var my_func = yo._model;
 		yo.prompt([{
 			type	: 'confirm',
 			name	: 'continue',
-			message : 'Add another attribute?'
+			message : 'Add another schema?'
 		}]).then((response) => {
 
 			if (response.continue === true) {
@@ -50,27 +45,11 @@ function model_prompt(yo) {
 		name	: 'name',
 		message : 'Model Name?'
 	},]).then((model) => {
-		// new_model_attributes.push({model.name , model.type})s
-		// yo.log("Hello");
-		// yo.log(model.name);
-		// yo.log(model.type);
-		new_model_attributes.name = model.name;
-		// yo._dezznuts();
-		// var my_func = yo._model;
-		yo.prompt([{
-			type	: 'confirm',
-			name	: 'continue',
-			message : 'Add attribute?'
-		}]).then((response) => {
 
-			if (response.continue === true) {
-				// console.log("yes");
-				schema_promt(yo);
-			}
-			else {
-				console.log("Shane is gay");
-			}
-		});
+		new_model_attributes.name = model.name;
+
+		schema_promt(yo);
+
 	});
 }
 
