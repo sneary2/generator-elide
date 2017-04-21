@@ -63,6 +63,9 @@ function generate_example_project(yo, project_name) {
 }
 
 function generate_new_project(yo, project_name, package_name) {
+    console.log('Hello World');
+    console.log(package_name);
+
     var file = package_name.split('.').join('/');
     // Create the main.java file
     yo.fs.copyTpl(
