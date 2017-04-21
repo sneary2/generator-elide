@@ -11,7 +11,7 @@ function prompting(yo) {
     }]).then((answers) => {
         if (answers.command === 'Try an example') {
             // Generate an example
-            generate.generate_example_project(yo, "com.yahoo.elide.example");
+            generator.generate_example_project(yo, "com.yahoo.elide.example");
             console.log("Example project created under elide/elide-example");
         }
         else if (answers.command === 'Create a new project') {

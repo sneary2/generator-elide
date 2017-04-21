@@ -56,18 +56,8 @@ function generate_example_project(yo, project_name) {
 
     // create the pom files
     yo.fs.copyTpl(
-        yo.templatePath("pom_files/elide-example-blog-pom.xml"),
+        yo.templatePath("template-pom.xml"),
         yo.destinationPath("elide/elide-example/elide-blog-example/pom.xml"),
-        {}
-    );
-    yo.fs.copyTpl(
-        yo.templatePath("pom_files/elide-example-pom.xml"),
-        yo.destinationPath("elide/elide-example/pom.xml"),
-        {}
-    );
-    yo.fs.copyTpl(
-        yo.templatePath("pom_files/elide-pom.xml"),
-        yo.destinationPath("elide/pom.xml"),
         {}
     );
 }
