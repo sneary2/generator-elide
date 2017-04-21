@@ -4,3 +4,4 @@ src/
 pom.xml
 model.java
 old_model.java
+generator-elide/node_modules
