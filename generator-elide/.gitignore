@@ -1,3 +1,4 @@
+node_modules
 .yo-rc.json
 public
 src/
