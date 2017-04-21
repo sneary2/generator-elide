@@ -62,5 +62,6 @@ function create_new_project(yo) {
 }
 
 module.exports = {
-    prompting: prompting
+    prompting: prompting,
+    create_new_project: create_new_project
 }

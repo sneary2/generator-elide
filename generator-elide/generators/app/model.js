@@ -35,10 +35,10 @@ function schema_promt(yo) {
 
 			if (response.continue === true) {
 				// console.log("yes");
-				yo.schema_promt(new_model_attributes);
+				schema_promt(yo);
 			}
 			else {
-				yo.create_model(new_model_attributes)
+				create_model(yo);
 			}
 		});
 	});
@@ -65,7 +65,7 @@ function model_prompt(yo) {
 
 			if (response.continue === true) {
 				// console.log("yes");
-				yo.schema_promt(new_model_attributes);
+				schema_promt(yo);
 			}
 			else {
 				console.log("Shane is gay");

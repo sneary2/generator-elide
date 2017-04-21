@@ -22,7 +22,7 @@ module.exports = class extends Generator {
 		}
 		else if (this.options.create) {
 			console.log("Create a new project");
-			generator.create_new_project(this);
+			prompt.create_new_project(this);
 		}
 		else if (this.options.model) {
 			console.log("Add models to project");
