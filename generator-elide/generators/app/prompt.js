@@ -1,4 +1,5 @@
-var generator = require('./generator.js')
+var generator = require('./generator')
+var model = require('./model')
 
 // Main prompt when running 'yo elide'
 function prompting(yo) {
@@ -6,7 +7,7 @@ function prompting(yo) {
         type	: 'list',
         name	: 'command',
         message	: 'Choose an option below',
-        choices	: ['Try an example', 'Create a new project', 'Info & Contact']
+        choices	: ['Try an example', 'Create a new project', 'Add models to an existing project', 'Info & Contact']
     }]).then((answers) => {
         if (answers.command === 'Try an example') {
             // Generate an example
@@ -18,7 +19,7 @@ function prompting(yo) {
             create_new_project(yo);
         }
         else if (answers.command === 'Add models to an existing project') {
-            // this._model(new_model_attributes);
+            model.model_prompt(yo);
         }
         else {
             // this._show_info();
