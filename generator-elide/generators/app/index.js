@@ -99,10 +99,20 @@ module.exports = class extends Generator {
 			{}
 		);
 
-		// copy pom file to main directory 
+		// create the pom files
 		this.fs.copyTpl(
-			this.templatePath("template-pom.xml"),
-			this.destinationPath("pom.xml"),
+			this.templatePath("pom_files/elide-example-blog-pom.xml"),
+			this.destinationPath("elide/elide-example/elide-blog-example/pom.xml"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("pom_files/elide-example-pom.xml"),
+			this.destinationPath("elide/elide-example/pom.xml"),
+			{}
+		);
+		this.fs.copyTpl(
+			this.templatePath("pom_files/elide-pom.xml"),
+			this.destinationPath("elide/pom.xml"),
 			{}
 		);
 	}
@@ -157,7 +167,7 @@ module.exports = class extends Generator {
 			message : 'Schema Name'
 		},{
 			name	: 'type',
-			message : 'What type?',
+			message : 'Data type?',
 			type	: 'list',
 			choices : [
 				"String",
