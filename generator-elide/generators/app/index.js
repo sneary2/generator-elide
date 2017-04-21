@@ -12,7 +12,7 @@ module.exports = class extends Generator {
 		this.option('create');		// Option flag to create a new project
 		this.option('info');		// Option flag to show Elide boot info
 	}
-
+	
 	// Show info
 	_show_info() {
 		console.log("Elide Boot is a command line interface (CLI) for Yahoo! Elide libary");
