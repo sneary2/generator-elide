@@ -101,11 +101,12 @@ function generate_new_project(yo, project_name, package_name) {
     // TODO: Should create a generic pom file
     // e.g. to download elide and its dependencies
 
-    // yo.fs.copyTpl(
-    // 	yo.templatePath("template-pom.xml"),
-    // 	yo.destinationPath("pom.xml"),
-    // 	{}
-    // );
+    // create the pom files
+    yo.fs.copyTpl(
+        yo.templatePath("template-pom.xml"),
+        yo.destinationPath("elide/elide-example/elide-blog-example/pom.xml"),
+        {}
+    );
 }
 
 module.exports = {
