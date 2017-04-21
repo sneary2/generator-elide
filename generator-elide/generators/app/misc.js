@@ -10,11 +10,12 @@ function show_info() {
     console.log(eb3s);
     console.log(eb4);
     console.log(eb5);
-    console.log("");
-    console.log("Elide Boot is a command line interface (CLI) for Yahoo! Elide libary");
-    console.log("Author: Deez Nuts");
-    console.log("Version: 1.0.0");
-    console.log("Contact: lame_email@suspicious-server.com");
+    console.log("_______________________________________________________________");
+    console.log("|Elide Boot is a command line interface (CLI) for Yahoo! Elide|");
+    console.log("|Author: Deez Nuts                                            |");
+    console.log("|Version: 1.0.0                                               |");
+    console.log("|Contact: lame_email@suspicious-server.com                    |");
+    console.log("---------------------------------------------------------------");
 }
 
 module.exports = {
