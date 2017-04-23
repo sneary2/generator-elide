@@ -2,19 +2,19 @@ var generator = require('./generator');
 
 var models = [];
 var choices_arr = [
-			"String",
-			"Int",
-			"Short",
-			"Float",
-			"Double",
-			"Long",
-			"Long long",
-			"Boolean",
-			"Char"
+			'String',
+			'Int',
+			'Short',
+			'Float',
+			'Double',
+			'Long',
+			'Long long',
+			'Boolean',
+			'Char'
 		   ];
 
 
-var new_model_attributes = {name: "", schemas: [] };
+var new_model_attributes = {name: '', schemas: [] };
 
 function schemaPrompt(yo, project_name, package_name) {
 	return yo.prompt([{
@@ -35,12 +35,12 @@ function schemaPrompt(yo, project_name, package_name) {
 		}]).then((response) => {
 
 			if (response.continue === true) {
-				// console.log("yes");
+				// console.log('yes');
 				schemaPrompt(yo, project_name, package_name);
 			} else {
 				models.push(new_model_attributes);
 				choices_arr.push(new_model_attributes.name);
-				new_model_attributes = {name: "", schemas: [] };
+				new_model_attributes = {name: '', schemas: [] };
 				// createModels(yo, project_name, package_name);
 				yo.prompt([{
 						type	: 'confirm',
@@ -91,8 +91,8 @@ function createModels(yo, project_name, package_name) {
 	models.forEach(
 		function(model) {
 			yo.fs.copyTpl(
-				yo.templatePath("model.java"),
-				yo.destinationPath(project_name + "/src/main/java/" + file + "/models/" + model.name + ".java"),
+				yo.templatePath('model.java'),
+				yo.destinationPath(project_name + '/src/main/java/' + file + '/models/' + model.name + '.java'),
 				model
 			);
 		}

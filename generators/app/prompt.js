@@ -12,8 +12,8 @@ function prompting(yo) {
     }]).then((answers) => {
         if (answers.command === 'Try an example') {
             // Generate an example
-            generator.generateExampleProject(yo, "com.yahoo.elide.example");
-            console.log("Example project created under elide/elide-example");
+            generator.generateExampleProject(yo, 'com.yahoo.elide.example');
+            console.log('Example project created under elide/elide-example');
         }
         else if (answers.command === 'Create a new project') {
             // Ask questions when creating a new project
@@ -28,26 +28,35 @@ function prompting(yo) {
 // Create new project prompt
 function createNewProject(yo) {
     yo.prompt([{
+        // artifactId
+        type    : 'input',
+        name    : 'artifactId',
+        message : 'artifactId',
+    }, {
+        // groupId
+        type    : 'input',
+        name    : 'groupId',
+        message : 'groupId',
+    }, {
         // Project name
-        type    : 'input',
-        name    : 'project_name',
-        message : 'Your project name',
-        default : yo.appname // Default to current folder name
-    }, {
-        // Package name
-        type    : 'input',
-        name    : 'package_name',
-        message : 'Your package name',
-    }, {
-        // Author
         type	: 'input',
-        name	: 'author',
-        message	: 'Author'
+        name	: 'project_name',
+        message	: 'Project name'
+    }, {
+        // Description
+        type	: 'input',
+        name	: 'description',
+        message	: 'Description'
     }, {
         // Version
         type	: 'input',
         name	: 'version',
         message	: 'Version'
+    }, {
+        // Author
+        type	: 'input',
+        name	: 'author',
+        message	: 'Author'
     }, {
         // License
         type	: 'input',
@@ -59,16 +68,16 @@ function createNewProject(yo) {
         message : 'Would you like to add models?'
     }]).then((answers) => {
             if (answers.model) {
-                model.modelPrompt(yo, answers.project_name, answers.package_name);
+                model.modelPrompt(yo, answers.artifactId, answers.groupId);
             }
             else {
-                generator.generateNewProject(yo, answers.project_name, answers.package_name,
+                generator.generateNewProject(yo, answers.artifactId, answers.groupId,
                     {
-                        artifactId  : answers.project_name,
-                        groupId     : answers.package_name,
+                        artifactId  : answers.artifactId,
+                        groupId     : answers.groupId,
                         name        : answers.project_name,
                         version     : answers.version,
-                        description : ""
+                        description : answers.description
                     });
             }
       });
