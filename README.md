@@ -8,24 +8,44 @@ _____ _ _   _        _____         _
 ```
 
 ## Requirements
-Success is guaranteed if this project is run on a 64 bit (Mac OSX/Linux/Windows) system with Node.js installed.
+Run on a 64 bit (Mac OSX/Linux/Windows) system with Node.js installed.
 
 ## Using elide-boot (Getting Started)
 
-To get started with the project. Clone the project on to your system.
-Ensure the folder is called `$ generator-elide`.
+#### To get started with the project:
 
-1. Perform the following steps:
+1. Clone the project on to your system.
+
+2. Install npm.
 
 	```sh
     $ generator-elide> npm install
+    $ generator-elide> npm link
     ```
 
-This creates node-modules in the current directory.
+    This creates node-modules in the current directory and links to the yeoman generator.
 
-```sh
-$
-```
+3. Run yo elide and choose one of the options.
+
+    ```sh
+    $ generator-elide> yo elide
+    ```
+
+4. For creating an example, change to the elide-blog-example directory and run mvn.
+
+    ```sh
+    $ generator-elide> cd elide-blog-example/
+    $ elide-blog-example> mvn install
+    $ elide-blog-example> mvn exec:java -Dexec.mainClass="com.yahoo.elide.example.Main"
+    ```
+
+5. For creating new project, change to the <Name> directory and run mvn.
+
+    ```sh
+    $ generator-elide> cd <Name>/
+    $ elide-blog-example> mvn install
+    $ elide-blog-example> mvn exec:java -Dexec.mainClass="<groupId>.Main"
+    ```
 
 ## Developers (Open-Source)
 
