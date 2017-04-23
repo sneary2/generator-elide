@@ -1,6 +1,18 @@
 var generator = require('./generator');
 
 var models = [];
+var choices_arr = [
+			"String",
+			"Int",
+			"Short",
+			"Float",
+			"Double",
+			"Long",
+			"Long long",
+			"Boolean",
+			"Char"
+		   ]
+
 
 var new_model_attributes = {name: "", schemas: [] };
 
@@ -13,17 +25,7 @@ function schema_promt(yo, project_name, package_name) {
 		name	: 'type',
 		message : 'What type?',
 		type	: 'list',
-		choices : [
-			"String",
-			"Int",
-			"Short",
-			"Float",
-			"Double",
-			"Long",
-			"Long long",
-			"Boolean",
-			"Char"
-		   ]
+		choices : choices_arr
 	}]).then((model) => {
 		new_model_attributes.schemas.push({name: model.name, type: model.type});
 		yo.prompt([{
@@ -37,6 +39,7 @@ function schema_promt(yo, project_name, package_name) {
 				schema_promt(yo, project_name, package_name);
 			} else {
 				models.push(new_model_attributes);
+				choices_arr.push(new_model_attributes.name);
 				new_model_attributes = {name: "", schemas: [] };
 				// create_models(yo, project_name, package_name);
 				yo.prompt([{
