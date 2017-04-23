@@ -1,5 +1,5 @@
 // Show info
-function show_info() {
+function showInfo() {
     var eb1 = "_____ _ _   _        _____         _   "
     var eb2 = "|   __| |_|_| |___   | __  |___ ___| |_ "
     var eb3s = "|   __| | | . | -_|  | __ -| . | . |  _|"
@@ -19,5 +19,5 @@ function show_info() {
 }
 
 module.exports = {
-    show_info: show_info
+    showInfo: showInfo
 }

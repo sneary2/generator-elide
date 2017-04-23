@@ -12,21 +12,21 @@ function prompting(yo) {
     }]).then((answers) => {
         if (answers.command === 'Try an example') {
             // Generate an example
-            generator.generate_example_project(yo, "com.yahoo.elide.example");
+            generator.generateExampleProject(yo, "com.yahoo.elide.example");
             console.log("Example project created under elide/elide-example");
         }
         else if (answers.command === 'Create a new project') {
             // Ask questions when creating a new project
-            create_new_project(yo);
+            createNewProject(yo);
         }
         else if (answers.command === 'Info & Contact') {
-            misc.show_info();
+            misc.showInfo();
         }
     });
 }
 
 // Create new project prompt
-function create_new_project(yo) {
+function createNewProject(yo) {
     yo.prompt([{
         // Project name
         type    : 'input',
@@ -59,11 +59,11 @@ function create_new_project(yo) {
         message : 'Would you like to add models?'
     }]).then((answers) => {
             if (answers.model) {
-                model.model_prompt(yo, answers.project_name, answers.package_name);
+                model.modelPrompt(yo, answers.project_name, answers.package_name);
             }
             else {
-                generator.generate_new_project(yo, answers.project_name, answers.package_name,
-                    {   
+                generator.generateNewProject(yo, answers.project_name, answers.package_name,
+                    {
                         artifactId  : answers.project_name,
                         groupId     : answers.package_name,
                         name        : answers.project_name,
@@ -76,5 +76,5 @@ function create_new_project(yo) {
 
 module.exports = {
     prompting: prompting,
-    create_new_project: create_new_project
+    createNewProject: createNewProject
 }
