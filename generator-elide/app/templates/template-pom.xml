@@ -6,12 +6,12 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>elide-blog-example</artifactId>
-    <groupId>com.yahoo.elide</groupId>
-    <version>3.0.4</version>
+    <artifactId><%= artifactId %></artifactId>
+    <groupId><%= groupId %></groupId>
+    <version><%= version %></version>
     <packaging>jar</packaging>
-    <name>Elide Blog Example</name>
-    <description>Elide example with SQL</description>
+    <name><%= name %></name>
+    <description><%= description %></description>
 
     <properties>
         <version.elide>3.0.4</version.elide>

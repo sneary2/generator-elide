@@ -58,11 +58,11 @@ function generate_example_project(yo, project_name) {
     yo.fs.copyTpl(
         yo.templatePath("template-pom.xml"),
         yo.destinationPath("elide-blog-example/pom.xml"),
-        {}
+        {} 
     );
 }
 
-function generate_new_project(yo, project_name, package_name) {
+function generate_new_project(yo, project_name, package_name, pom_obj) {
     var file = package_name.split('.').join('/');
     // Create the main.java file
     yo.fs.copyTpl(
@@ -98,7 +98,7 @@ function generate_new_project(yo, project_name, package_name) {
     yo.fs.copyTpl(
         yo.templatePath("template-pom.xml"),
         yo.destinationPath(project_name + "/pom.xml"),
-        {}
+        pom_obj
     );
 }
 

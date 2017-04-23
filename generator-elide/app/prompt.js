@@ -62,7 +62,14 @@ function create_new_project(yo) {
                 model.model_prompt(yo, answers.project_name, answers.package_name);
             }
             else {
-                generator.generate_new_project(yo, answers.project_name, answers.package_name);
+                generator.generate_new_project(yo, answers.project_name, answers.package_name,
+                    {   
+                        artifactId  : answers.project_name,
+                        groupId     : answers.package_name,
+                        name        : answers.project_name,
+                        version     : answers.version,
+                        description : ""
+                    });
             }
       });
 }
