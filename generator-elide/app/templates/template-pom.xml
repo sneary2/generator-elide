@@ -38,13 +38,13 @@
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-annotations</artifactId>
-            <version>${version}</version>
+            <version>3.0.5-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-datastore-hibernate5</artifactId>
-            <version>${version}</version>
+            <version>3.0.5-SNAPSHOT</version>
         </dependency>
         <!-- <dependency>
             <groupId>com.yahoo.elide</groupId>
