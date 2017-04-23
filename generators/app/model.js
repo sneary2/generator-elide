@@ -16,7 +16,7 @@ var choices_arr = [
 
 var new_model_attributes = {name: "", schemas: [] };
 
-function schema_promt(yo, project_name, package_name) {
+function schemaPrompt(yo, project_name, package_name) {
 	return yo.prompt([{
 		type	: 'input',
 		name	: 'name',
@@ -36,21 +36,21 @@ function schema_promt(yo, project_name, package_name) {
 
 			if (response.continue === true) {
 				// console.log("yes");
-				schema_promt(yo, project_name, package_name);
+				schemaPrompt(yo, project_name, package_name);
 			} else {
 				models.push(new_model_attributes);
 				choices_arr.push(new_model_attributes.name);
 				new_model_attributes = {name: "", schemas: [] };
-				// create_models(yo, project_name, package_name);
+				// createModels(yo, project_name, package_name);
 				yo.prompt([{
 						type	: 'confirm',
 						name	: 'add_another',
 						message : 'Add another model?'
 				}]).then((answer) => {
 					if(answer.add_another) {
-						model_prompt(yo, project_name, package_name);
+						modelPrompt(yo, project_name, package_name);
 					} else {
-						create_models(yo, project_name, package_name)
+						createModels(yo, project_name, package_name)
 					}
 				})
 			}
@@ -65,12 +65,12 @@ function schema_promt(yo, project_name, package_name) {
 // 			message : 'Add another model?'
 // 	},]).then((answer) => {
 // 		if(answer.add_another) {
-// 			model_prompt
+// 			modelPrompt
 // 		}
 // 	}
 // }
 
-function model_prompt(yo, project_name, package_name) {
+function modelPrompt(yo, project_name, package_name) {
 	// var done_adding_models = false;
 	// while(!done_adding_models) {
 		yo.prompt([{
@@ -81,12 +81,12 @@ function model_prompt(yo, project_name, package_name) {
 
 			new_model_attributes.name = model.name;
 
-			schema_promt(yo, project_name, package_name);
+			schemaPrompt(yo, project_name, package_name);
 		});
 	// }
 }
 
-function create_models(yo, project_name, package_name) {
+function createModels(yo, project_name, package_name) {
 	var file = package_name.split('.').join('/')
 	models.forEach(
 		function(model) {
@@ -98,12 +98,12 @@ function create_models(yo, project_name, package_name) {
 		}
 	);
 
-    generator.generate_new_project(yo, project_name, package_name);
+    generator.generateNewProject(yo, project_name, package_name);
 }
 
 module.exports = {
-    // schema_promt: schema_promt,
-    model_prompt: model_prompt,
-    // create_models: create_models,
+    // schemaPrompt: schemaPrompt,
+    modelPrompt: modelPrompt,
+    // createModels: createModels,
     new_model_attributes: new_model_attributes
 }

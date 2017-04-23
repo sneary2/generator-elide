@@ -17,19 +17,19 @@ module.exports = class extends Generator {
 	main() {
 		if (this.options.example) {
 			console.log("Generate an example");
-			generator.generate_example_project(this, "com.yahoo.elide.example");
+			generator.generateExampleProject(this, "com.yahoo.elide.example");
 			console.log("Example project created under elide/elide-example");
 		}
 		else if (this.options.create) {
 			console.log("Create a new project");
-			prompt.create_new_project(this);
+			prompt.createNewProject(this);
 		}
 		else if (this.options.model) {
 			console.log("Add models to project");
-			model.model_prompt(this);
+			model.modelPrompt(this);
 		}
 		else if (this.options.info){
-			misc.show_info()
+			misc.showInfo()
 		}
 		else {
 			prompt.prompting(this);

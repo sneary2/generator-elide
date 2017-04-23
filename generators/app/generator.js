@@ -1,5 +1,5 @@
 // Generate an example
-function generate_example_project(yo, project_name) {
+function generateExampleProject(yo, project_name) {
 
     var file = project_name.split('.').join('/');
     // Create the main.java file
@@ -68,7 +68,7 @@ function generate_example_project(yo, project_name) {
     );
 }
 
-function generate_new_project(yo, project_name, package_name, pom_obj) {
+function generateNewProject(yo, project_name, package_name, pom_obj) {
     var file = package_name.split('.').join('/');
     // Create the main.java file
     yo.fs.copyTpl(
@@ -109,6 +109,6 @@ function generate_new_project(yo, project_name, package_name, pom_obj) {
 }
 
 module.exports = {
-    generate_example_project: generate_example_project,
-    generate_new_project: generate_new_project
+    generateExampleProject: generateExampleProject,
+    generateNewProject: generateNewProject
 }
