@@ -17,7 +17,7 @@
     "node >= 6.9"
   ],
   "author": "cs397",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/shaneneary/elide-boot/issues"
   },
