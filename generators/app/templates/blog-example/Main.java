@@ -3,7 +3,7 @@
  * Licensed under the Apache License, Version 2.0
  * See LICENSE file in project root for terms.
  */
-package com.yahoo.elide.example;
+package <%= groupId %>;
 
 import com.yahoo.elide.resources.JsonApiEndpoint;
 import lombok.extern.slf4j.Slf4j;
