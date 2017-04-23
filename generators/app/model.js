@@ -1,109 +1,94 @@
-var generator = require('./generator');
+const generator = require('./generator');
 
-var models = [];
-var choices_arr = [
-			'String',
-			'Int',
-			'Short',
-			'Float',
-			'Double',
-			'Long',
-			'Long long',
-			'Boolean',
-			'Char'
-		   ];
+const choicesArr = [
+  'String',
+  'Int',
+  'Short',
+  'Float',
+  'Double',
+  'Long',
+  'Long long',
+  'Boolean',
+  'Char'
+];
 
+const models = [];
 
-var new_model_attributes = {name: '', schemas: [] };
+let newModelAttributes = {
+  name: '',
+  schemas: []
+};
 
-function schemaPrompt(yo, project_name, package_name) {
+const schemaPrompt = (yo, projectName, packageName) => {
 	return yo.prompt([{
-		type	: 'input',
-		name	: 'name',
-		message : 'Schema Name'
-	},{
-		name	: 'type',
-		message : 'What type?',
-		type	: 'list',
-		choices : choices_arr
+		type: 'input',
+		name: 'name',
+		message: 'Schema Name'
+	}, {
+		name: 'type',
+		message: 'What type?',
+		type: 'list',
+		choices: choicesArr
 	}]).then((model) => {
-		new_model_attributes.schemas.push({name: model.name, type: model.type});
+		newModelAttributes.schemas.push({
+      name: model.name,
+      type: model.type
+    });
 		yo.prompt([{
-			type	: 'confirm',
-			name	: 'continue',
-			message : 'Add another schema?'
+			type: 'confirm',
+			name: 'continue',
+			message: 'Add another schema?'
 		}]).then((response) => {
-
-			if (response.continue === true) {
-				// console.log('yes');
-				schemaPrompt(yo, project_name, package_name);
+			if (response.continue) {
+				schemaPrompt(yo, projectName, packageName);
 			} else {
-				models.push(new_model_attributes);
-				choices_arr.push(new_model_attributes.name);
-				new_model_attributes = {name: '', schemas: [] };
-				// createModels(yo, project_name, package_name);
+				models.push(newModelAttributes);
+				choicesArr.push(newModelAttributes.name);
+				newModelAttributes = {
+          name: '',
+          schemas: []
+        };
 				yo.prompt([{
-						type	: 'confirm',
-						name	: 'add_another',
-						message : 'Add another model?'
+						type: 'confirm',
+						name: 'addAnother',
+						message: 'Add another model?'
 				}]).then((answer) => {
-					if(answer.add_another) {
-						modelPrompt(yo, project_name, package_name);
+					if(answer.addAnother) {
+						modelPrompt(yo, projectName, packageName);
 					} else {
-						createModels(yo, project_name, package_name)
+						createModels(yo, projectName, packageName)
 					}
-				})
+				});
 			}
 		});
 	});
 }
 
-// function continue_making_models(yo, project_name, package_name) {
-// 	yo.prompt([{
-// 			type	: 'confirm',
-// 			name	: 'add_another',
-// 			message : 'Add another model?'
-// 	},]).then((answer) => {
-// 		if(answer.add_another) {
-// 			modelPrompt
-// 		}
-// 	}
-// }
-
-function modelPrompt(yo, project_name, package_name) {
-	// var done_adding_models = false;
-	// while(!done_adding_models) {
-		yo.prompt([{
-			type	: 'input',
-			name	: 'name',
-			message : 'Model Name?'
-		},]).then((model) => {
-
-			new_model_attributes.name = model.name;
-
-			schemaPrompt(yo, project_name, package_name);
-		});
-	// }
+const modelPrompt = (yo, projectName, packageName) => {
+	yo.prompt([{
+		type: 'input',
+		name: 'name',
+		message: 'Model Name?'
+	},]).then((model) => {
+		newModelAttributes.name = model.name;
+		schemaPrompt(yo, projectName, packageName);
+	});
 }
 
-function createModels(yo, project_name, package_name) {
-	var file = package_name.split('.').join('/')
-	models.forEach(
-		function(model) {
-			yo.fs.copyTpl(
-				yo.templatePath('model.java'),
-				yo.destinationPath(project_name + '/src/main/java/' + file + '/models/' + model.name + '.java'),
-				model
-			);
-		}
-	);
+const createModels = (yo, projectName, packageName) => {
+	const file = packageName.split('.').join('/')
+	models.forEach((model) => {
+    yo.fs.copyTpl(
+      yo.templatePath('model.java'),
+      yo.destinationPath(`${projectName}/src/main/java/${file}/models/${model.name}.java`),
+      model
+    );
+  });
 
-    generator.generateNewProject(yo, project_name, package_name);
+  generator.generateNewProject(yo, projectName, packageName);
 }
 
 module.exports = {
-    // schemaPrompt: schemaPrompt,
-    modelPrompt: modelPrompt,
-    // createModels: createModels,
-    new_model_attributes: new_model_attributes
+  modelPrompt,
+  newModelAttributes
 }
