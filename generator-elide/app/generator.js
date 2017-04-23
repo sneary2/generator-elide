@@ -39,12 +39,12 @@ function generate_example_project(yo, project_name) {
     // Don't know what this is
     yo.fs.copyTpl(
         yo.templatePath("blog-example/hibernate.cfg.xml"),
-        yo.destinationPath("elide/elide-example/elide-blog-example/src/resources/hibernate.cfg.xml"),
+        yo.destinationPath("elide/elide-example/elide-blog-example/src/main/resources/hibernate.cfg.xml"),
         {}
     );
     yo.fs.copyTpl(
         yo.templatePath("blog-example/log4j2.xml"),
-        yo.destinationPath("elide/elide-example/elide-blog-example/src/resources/log4j2.xml"),
+        yo.destinationPath("elide/elide-example/elide-blog-example/src/main/resources/log4j2.xml"),
         {}
     );
 
