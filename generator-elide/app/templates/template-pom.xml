@@ -8,8 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>elide-blog-example</artifactId>
     <groupId>com.yahoo.elide</groupId>
-    <!-- <version>1.0.0.0-SNAPSHOT</version> -->
-    <version>3.0.5-SNAPSHOT</version>
+    <version>3.0.4</version>
     <packaging>jar</packaging>
     <name>Elide Blog Example</name>
     <description>Elide example with SQL</description>
@@ -32,14 +31,11 @@
             <artifactId>elide-core</artifactId>
             <version>${version.elide}</version>
         </dependency>
-
-        <!-- adding deps from elide github -->
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-annotations</artifactId>
             <version>${version.elide}</version>
         </dependency>
-
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-datastore-hibernate5</artifactId>
@@ -57,6 +53,7 @@
             <artifactId>jetty-servlet</artifactId>
             <version>${version.jetty}</version>
         </dependency>
+
         <!-- Jersey -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -68,7 +65,8 @@
             <artifactId>jersey-container-jetty-servlet</artifactId>
             <version>${version.jersey}</version>
         </dependency>
-        <!-- logging -->
+
+        <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -91,19 +89,20 @@
             <artifactId>javax.ws.rs-api</artifactId>
             <version>2.1-m05</version>
         </dependency>
+
         <!-- Persistence -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
             <version>2.1.0</version>
         </dependency>
-        <!-- error here as well -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.0.2.Final</version>
         </dependency>
-        <dependency>
+
+        <!-- <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-template-freemarker</artifactId>
             <version>2.0.0</version>
@@ -117,13 +116,15 @@
             <groupId>com.heroku.sdk</groupId>
             <artifactId>heroku-jdbc</artifactId>
             <version>0.1.1</version>
-        </dependency>
+        </dependency> -->
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.37</version>
             <scope>runtime</scope>
         </dependency>
+
         <!-- JSON -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
