@@ -94,7 +94,7 @@ function create_models(yo, project_name, package_name) {
 			);
 		}
 	);
-	
+
     generator.generate_new_project(yo, project_name, package_name);
 }
 
@@ -104,4 +104,3 @@ module.exports = {
     // create_models: create_models,
     new_model_attributes: new_model_attributes
 }
-
