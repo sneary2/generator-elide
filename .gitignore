@@ -1,5 +1,4 @@
 .yo-rc.json
-public/
-src/
 pom.xml
-model.java
+node_modules
+.DS_Store
