@@ -11,7 +11,7 @@ var choices_arr = [
 			"Long long",
 			"Boolean",
 			"Char"
-		   ]
+		   ];
 
 
 var new_model_attributes = {name: "", schemas: [] };
