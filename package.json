@@ -13,6 +13,9 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "engine": [
+    "node >= 6.9"
+  ],
   "author": "cs397",
   "license": "ISC",
   "bugs": {
@@ -23,7 +26,6 @@
     "yeoman-generator": "^1.1.1"
 },
   "files":[
-	"app",
-	"router"
+	  "app"
   ]
 }
