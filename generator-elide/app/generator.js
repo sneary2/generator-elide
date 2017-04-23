@@ -97,7 +97,7 @@ function generate_new_project(yo, project_name, package_name) {
     // create the pom files when creating new project
     yo.fs.copyTpl(
         yo.templatePath("template-pom.xml"),
-        yo.destinationPath("elide/elide-example/elide-blog-example/pom.xml"),
+        yo.destinationPath(project_name + "/pom.xml"),
         {}
     );
 }
