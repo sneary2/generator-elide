@@ -1,8 +1,3 @@
-/*
- * Copyright 2016, Yahoo Inc.
- * Licensed under the Apache License, Version 2.0
- * See LICENSE file in project root for terms.
- */
 package <%= groupId %>;
 
 import com.yahoo.elide.Elide;
@@ -15,9 +10,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Example application for resource config.
- */
 public class ElideResourceConfig extends ResourceConfig {
     public ElideResourceConfig() {
         register(new AbstractBinder() {
