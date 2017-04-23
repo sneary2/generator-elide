@@ -101,23 +101,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.0.2.Final</version>
         </dependency>
-
-        <!-- <dependency>
-            <groupId>com.sparkjava</groupId>
-            <artifactId>spark-template-freemarker</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.4-1201-jdbc4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.heroku.sdk</groupId>
-            <artifactId>heroku-jdbc</artifactId>
-            <version>0.1.1</version>
-        </dependency> -->
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -186,7 +169,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.6</version>
@@ -197,7 +180,7 @@
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 </project>

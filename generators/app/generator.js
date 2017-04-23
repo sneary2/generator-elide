@@ -49,7 +49,7 @@ const generateExampleProject = (yo, projectName) => {
 
   yo.fs.copyTpl(
     yo.templatePath('blog-example/load_blog.sh'),
-    yo.destinationPath('elide-blog-example/src/scripts/load_blog.sh'),
+    yo.destinationPath('elide-blog-example/src/main/scripts/load_blog.sh'),
     {}
   );
 
@@ -84,18 +84,18 @@ const generateNewProject = (yo, projectName, package_name, pom_obj) => {
   // Don't know what this is
   yo.fs.copyTpl(
     yo.templatePath('blog-example/hibernate.cfg.xml'),
-    yo.destinationPath(projectName + '/src/resources/hibernate.cfg.xml'),
+    yo.destinationPath(projectName + '/src/main/resources/hibernate.cfg.xml'),
     {}
   );
   yo.fs.copyTpl(
     yo.templatePath('blog-example/log4j2.xml'),
-    yo.destinationPath(projectName + '/src/resources/log4j2.xml'),
+    yo.destinationPath(projectName + '/src/main/resources/log4j2.xml'),
     {}
   );
 
   yo.fs.copyTpl(
     yo.templatePath('blog-example/load_blog.sh'),
-    yo.destinationPath(projectName + '/src/scripts/load_blog.sh'),
+    yo.destinationPath(projectName + '/src/main/scripts/load_blog.sh'),
     {}
   );
 
