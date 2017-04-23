@@ -37,13 +37,13 @@
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-annotations</artifactId>
-            <version>${version}</version>
+            <version>${version.elide}</version>
         </dependency>
 
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-datastore-hibernate5</artifactId>
-            <version>${version}</version>
+            <version>${version.elide}</version>
         </dependency>
 
         <!-- Jetty -->
