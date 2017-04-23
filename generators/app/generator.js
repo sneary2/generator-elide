@@ -58,7 +58,13 @@ function generate_example_project(yo, project_name) {
     yo.fs.copyTpl(
         yo.templatePath("template-pom.xml"),
         yo.destinationPath("elide-blog-example/pom.xml"),
-        {} 
+        {   
+            artifactId  : "elide-blog-example",
+            groupId     : "com.yahoo.elide",
+            name        : "Elide Example: Hibernate5 API with Security",
+            version     : "3.0.5-SNAPSHOT",
+            description : "lide example using javax.persistence, MySQL and Elide Security"
+        }
     );
 }
 
