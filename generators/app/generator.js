@@ -5,12 +5,12 @@ const generateExampleProject = (yo, projectName) => {
   yo.fs.copyTpl(
     yo.templatePath('blog-example/Main.java'),
     yo.destinationPath('elide-blog-example/src/main/java/' + file + '/Main.java'),
-    {}
+    {groupId : projectName}
   );
   yo.fs.copyTpl(
     yo.templatePath('blog-example/ElideResourceConfig.java'),
     yo.destinationPath('elide-blog-example/src/main/java/' + file + '/ElideResourceConfig.java'),
-    {}
+    {groupId : projectName}
   );
 
   // Init the models folder blog-example
@@ -73,12 +73,12 @@ const generateNewProject = (yo, projectName, package_name, pom_obj) => {
   yo.fs.copyTpl(
     yo.templatePath('blog-example/Main.java'),
     yo.destinationPath(projectName + '/src/main/java/' + file + '/Main.java'),
-    {}
+    {groupId : package_name}
   );
   yo.fs.copyTpl(
     yo.templatePath('blog-example/ElideResourceConfig.java'),
     yo.destinationPath(projectName + '/src/main/java/' + file + '/ElideResourceConfig.java'),
-    {}
+    {groupId : package_name}
   );
 
   // Don't know what this is
