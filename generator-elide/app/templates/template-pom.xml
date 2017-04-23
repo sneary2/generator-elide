@@ -45,11 +45,6 @@
             <artifactId>elide-datastore-hibernate5</artifactId>
             <version>${version}</version>
         </dependency>
-        <!-- <dependency>
-            <groupId>com.yahoo.elide</groupId>
-            <artifactId>elide-dbmanager-hibernate5</artifactId>
-            <version>${version.elide}</version>
-        </dependency> -->
 
         <!-- Jetty -->
         <dependency>
