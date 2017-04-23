@@ -4,55 +4,31 @@ _____ _ _   _        _____         _
 |   __| |_|_| |___   | __  |___ ___| |_
 |   __| | | . | -_|  | __ -| . | . |  _|
 |_____|_|_|___|___|  |_____|___|___|_|  
-                                        v.1.0
+                                   v.1.0
 ```
-
+Elide Boot is an command line interface (CLI) for [Yahoo! Elide](http://elide.io)
 ## Requirements
-Run on a 64 bit (Mac OSX/Linux/Windows) system with Node.js installed.
+1. [Node.js](https://nodejs.org)
+2. [Maven](https://maven.apache.org/)
 
-## Using elide-boot (Getting Started)
+## Getting Started
 
-#### To get started with the project:
+```
+git clone https://github.com/shaneneary/generator-elide.git
+cd generator-elide
+npm install
+npm link
+```
+You now can run ```yo elide``` or ```yo elide --<option>``` anywhere to execute Elide Boot.
 
-1. Clone the project on to your system.
+To run an example, run ```yo elide --example``` and check out [elide-blog-example](https://github.com/yahoo/elide/tree/master/elide-example/elide-blog-example) for more information.
 
-2. Install npm.
-
-	```sh
-    $ generator-elide> npm install
-    $ generator-elide> npm link
-    ```
-
-    This creates node-modules in the current directory and links to the yeoman generator.
-
-3. Run yo elide and choose one of the options.
-
-    ```sh
-    $ generator-elide> yo elide
-    ```
-
-4. For creating an example, change to the elide-blog-example directory and run mvn.
-
-    ```sh
-    $ generator-elide> cd elide-blog-example/
-    $ elide-blog-example> mvn install
-    $ elide-blog-example> mvn exec:java -Dexec.mainClass="com.yahoo.elide.example.Main"
-    ```
-
-5. For creating new project, change to the <Name> directory and run mvn.
-
-    ```sh
-    $ generator-elide> cd <Name>/
-    $ elide-blog-example> mvn install
-    $ elide-blog-example> mvn exec:java -Dexec.mainClass="<groupId>.Main"
-    ```
-
-## Developers (Open-Source)
+## Contributing
 
 Feel free to contribute to this project. This project is Open-Source under the Apache License, Version 2.0.  
 
-## Contributors (About the project)
-This project is part of the class CS397 (Open-Source development) at the University of Illinois at Urbana-Champaign. The project was in partnership with Yahoo! Inc. at the Research Park, Champaign, IL.
+## About the project
+This project is part of the CS 397 Open-Source development at the University of Illinois at Urbana-Champaign, in partnership with Yahoo! Inc. at the Research Park, Champaign, IL.
 
 **Mentors**
 - Dan Chen
