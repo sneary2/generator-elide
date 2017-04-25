@@ -32,7 +32,10 @@ const fieldPrompt = (yo, pomObj) => {
 		type: 'list',
 		choices
 	}]).then((model) => {
-    const { name, type } = model;
+        if (model.type != "String") {
+            model.type = model.type.toLowerCase();
+        }
+        const { name, type } = model;
 		newModelAttributes.fields.push({ name, type });
 		yo.prompt([{
 			type: 'confirm',
