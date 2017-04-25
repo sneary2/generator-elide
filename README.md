@@ -1,4 +1,4 @@
-# Elide Boot
+# [Elide Boot](https://github.com/shaneneary/generator-elide)
 ```sh
 _____ _ _   _        _____         _
 |   __| |_|_| |___   | __  |___ ___| |_
